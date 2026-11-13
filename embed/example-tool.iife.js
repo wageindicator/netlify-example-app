@@ -362,6 +362,7 @@
       this._pair(received, "country", this._countryAttribute() || "(not set)");
       this._pair(received, "API", this._wagesUrl());
       this._pair(received, "hash", window.location.hash || "(empty)");
+      add(details, "pre", this._snippet());
 
       add(details, "h3", "Who owns what");
       for (index = 0; index < roles.length; index += 1) {
@@ -381,18 +382,7 @@
         );
       }
 
-      add(details, "h3", "What the CMS needs");
-      add(
-        details,
-        "p",
-        "Script URL, element name, and attribute list. For this tool that is " +
-          this._apiBase() +
-          payload.scriptPath +
-          ", " +
-          payload.element +
-          ", and heading, api-base, country."
-      );
-      add(details, "pre", this._snippet());
+      this._renderCms(details, payload.cms);
 
       add(details, "h3", "Rules for another app");
       list = document.createElement("ol");
@@ -407,6 +397,35 @@
     _pair(list, name, value) {
       add(list, "dt", name);
       add(list, "dd", value);
+    }
+
+    _renderCms(details, cms) {
+      var fields = (cms && cms.fields) || [];
+      var rules = (cms && cms.rules) || [];
+      var index = 0;
+      var field = null;
+      var list = null;
+
+      add(details, "h3", "What the CMS needs");
+      if (!cms) {
+        return;
+      }
+      add(details, "p", cms.page + ". " + cms.summary);
+      for (index = 0; index < fields.length; index += 1) {
+        field = fields[index];
+        add(details, "p", field.name + " — " + field.value + ". " + field.purpose);
+      }
+      list = document.createElement("ul");
+      details.appendChild(list);
+      for (index = 0; index < rules.length; index += 1) {
+        add(list, "li", rules[index]);
+      }
+      if (cms.markup) {
+        add(details, "pre", cms.markup);
+      }
+      if (cms.output) {
+        add(details, "p", cms.output);
+      }
     }
 
     _snippet() {

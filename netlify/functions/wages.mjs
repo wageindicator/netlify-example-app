@@ -9,8 +9,8 @@ const BODY = JSON.stringify({
   scriptPath: "/embed/example-tool.iife.js",
   roles: [
     {
-      name: "GitLab",
-      job: "Holds the source and the review.",
+      name: "GitHub",
+      job: "Holds the source Netlify builds.",
     },
     {
       name: "Netlify",
@@ -18,9 +18,55 @@ const BODY = JSON.stringify({
     },
     {
       name: "Wagtail",
-      job: "Owns the public URL, title, menu, and the attributes on the element.",
+      job: "Owns the public page. One Web component page embeds this tool. There is no model per Netlify app.",
     },
   ],
+  cms: {
+    page: "Web component",
+    summary:
+      "Editors use the Web component page. They set the script URL, the element name, an optional API origin, and extra attributes. There is no model per Netlify app and no component URL setting.",
+    fields: [
+      {
+        name: "component_url",
+        value: "https://wageindicator-example-tool.netlify.app/embed/example-tool.iife.js",
+        purpose:
+          "Classic IIFE script. A path is allowed. No userinfo, query, or fragment.",
+      },
+      {
+        name: "element_name",
+        value: "wageindicator-example-tool",
+        purpose:
+          "Custom element tag. It must contain a hyphen. This is the tag, not an attribute.",
+      },
+      {
+        name: "api_base",
+        value: "https://wageindicator-example-tool.netlify.app",
+        purpose:
+          "Optional origin, rendered as api-base. No path. Leave it empty to omit the attribute. The component then calls its own origin.",
+      },
+      {
+        name: "parameters",
+        value: "heading, country",
+        purpose:
+          "Ordered name/value pairs, unique per page, rendered as attributes. heading is the page title. country is an optional ISO 3166-1 alpha-2 code. When the hash is empty, the tool opens that country.",
+      },
+    ],
+    rules: [
+      "https only, except http on localhost and 127.0.0.1. The host must be wageindicator.org, a subdomain, or a host ending in .netlify.app.",
+      "Reserved parameter names: api-base, src, href, and any name that starts with on.",
+      "The page can sit under a site, a subsite, or a content page.",
+    ],
+    markup: [
+      '<script src="https://wageindicator-example-tool.netlify.app/embed/example-tool.iife.js"></script>',
+      "<wageindicator-example-tool",
+      '  heading="Sample wages"',
+      '  api-base="https://wageindicator-example-tool.netlify.app"',
+      '  country="NL"',
+      "></wageindicator-example-tool>",
+    ].join("\n"),
+    output:
+      "The page returns that HTML. Nuxt injects it and runs the classic script again on client navigation. There is no Vue page for this type.",
+  },
   attributes: [
     {
       name: "heading",
