@@ -10,6 +10,6 @@ to = "/.netlify/functions/ping"
 status = 200
 
 [[redirects]]
-from = "/api/wages"
-to = "/.netlify/functions/wages"
+from = "/api/example"
+to = "/.netlify/functions/example"
 status = 200

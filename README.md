@@ -1,8 +1,6 @@
-# Sample wages
+# Netlify embed example
 
-Reference WageIndicator tool. It shows a minimum wage and a living wage for a few countries, and it describes the embed contract in the tool itself. The figures are samples, not WageIndicator estimates.
-
-Open **Embed configuration** inside the tool. That panel is the specification: the attributes this instance received, who owns the source, the host, and the page, and the rules another app must follow.
+Example of a tool hosted on Netlify and embedded on a page. The tool shows a title and one line that says what it is for. Open **Embed configuration** inside the tool for the attributes and the CMS fields.
 
 ## What the CMS needs
 
@@ -13,13 +11,13 @@ For this tool:
 - **Script URL** (`component_url`): `https://wageindicator-example-tool.netlify.app/embed/example-tool.iife.js`
 - **Element name** (`element_name`): `wageindicator-example-tool`
 - **API origin** (`api_base`): `https://wageindicator-example-tool.netlify.app`
-- **Extra attributes** (`parameters`): `heading` is the page title. `country` is an optional ISO 3166-1 alpha-2 code. When the hash is empty, the tool opens that country.
+- **Extra attributes** (`parameters`): `heading` is the title inside the tool
 
 `component_url` is a classic IIFE `<script src>`. A path is allowed. No userinfo, query, or fragment.
 
 `element_name` is the custom element tag and must contain a hyphen. It is the tag, not an attribute.
 
-`api_base` is an optional origin with no path. The page renders it as `api-base`. Leave it empty and the attribute is omitted, so the component calls its own origin. Set it on wageindicator.org. Leave it empty on this site so `/api/wages` stays same-origin.
+`api_base` is an optional origin with no path. The page renders it as `api-base`. Leave it empty and the attribute is omitted, so the component calls its own origin. Set it on another site. Leave it empty on this site so `/api/example` stays same-origin.
 
 `parameters` are ordered name/value pairs, unique per page, rendered as attributes. Reserved names are `api-base`, `src`, `href`, and any name that starts with `on`.
 
@@ -30,26 +28,25 @@ The page can sit under a site, a subsite, or a content page. It returns the HTML
 ```html
 <script src="https://wageindicator-example-tool.netlify.app/embed/example-tool.iife.js"></script>
 <wageindicator-example-tool
-  heading="Sample wages"
+  heading="Netlify embed example"
   api-base="https://wageindicator-example-tool.netlify.app"
-  country="NL"
 ></wageindicator-example-tool>
 ```
 
-Views use the hash only: `#overview`, `#settings`, and a country code such as `#NL`. The document path does not change.
+A real tool navigates with the hash. The document path does not change.
 
 ## Roles
 
-GitHub holds the source Netlify builds. Netlify hosts the script and `/api/wages`. Wagtail owns the public page and the attributes. Netlify is not the source of the CMS page.
+GitHub holds the source Netlify builds. Netlify hosts the script and `/api/example`. Wagtail owns the public page and the attributes. Netlify is not the source of the CMS page.
 
 ## Files
 
 - `index.html` — host page, the same job the CMS page does
 - `embed/example-tool.iife.js` — classic IIFE, shadow DOM, CSS in the file
-- `netlify/functions/wages.mjs` — sample countries plus the embed contract
+- `netlify/functions/example.mjs` — placeholder text plus the embed contract
 - `netlify/functions/ping.mjs` — health check
 - `netlify/lib/cors.mjs` — allow-origin for WageIndicator hosts and localhost
-- `netlify.toml` — publish the project root and rewrite `/api/wages` and `/api/ping`
+- `netlify.toml` — publish the project root and rewrite `/api/example` and `/api/ping`
 
 ## Rules the tool states
 
