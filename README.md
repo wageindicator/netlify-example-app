@@ -29,7 +29,7 @@ Views use the hash only: `#overview`, `#settings`, and a country code such as `#
 
 ## Roles
 
-GitLab holds the source. Netlify hosts the script and `/api/wages`. Wagtail owns the public page and the attributes. Netlify is not the source of the CMS page.
+GitHub holds the source Netlify builds. Netlify hosts the script and `/api/wages`. Wagtail owns the public page and the attributes. Netlify is not the source of the CMS page.
 
 ## Files
 
