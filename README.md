@@ -2,7 +2,7 @@
 
 Reference WageIndicator tool. It shows a minimum wage and a living wage for a few countries, and it describes the embed contract in the tool itself. The figures are samples, not WageIndicator estimates.
 
-Open the site and use **Embed settings** inside the tool. That panel is the specification: the attributes this instance received, who owns the source, the host, and the page, and the rules another app must follow.
+Open **Embed configuration** inside the tool. That panel is the specification: the attributes this instance received, who owns the source, the host, and the page, and the rules another app must follow.
 
 ## What the CMS needs
 

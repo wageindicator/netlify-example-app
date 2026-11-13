@@ -239,7 +239,6 @@
     _renderOverview(tool) {
       var countries = this._payload.countries || [];
       var list = null;
-      var actions = null;
       var index = 0;
       var country = null;
       var self = this;
@@ -256,8 +255,6 @@
         country = countries[index];
         this._countryButton(list, country);
       }
-      actions = add(tool, "div", null, "actions");
-      button(actions, "Embed settings", "settings", true);
       if (self._countryAttribute()) {
         add(
           tool,
@@ -324,7 +321,6 @@
       add(tool, "p", this._payload.disclaimer, "disclaimer");
       actions = add(tool, "div", null, "actions");
       button(actions, "All sample countries", "overview", true);
-      button(actions, "Embed settings", "settings", true);
     }
 
     _figure(parent, label, amount, period) {
