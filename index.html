@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample wages</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f7f8fa;
+        color: #14202b;
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      main {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: 1.75rem;
+      }
+
+      p {
+        margin: 0 0 1rem;
+      }
+
+      .links a {
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sample wages</h1>
+      <p>
+        A reference WageIndicator tool: a country, a minimum wage, and a living
+        wage. The figures are samples, not estimates. The tool itself lists the
+        embed settings another app must follow. On this origin
+        <code>api-base</code> is omitted, so <code>/api/wages</code> stays on
+        this host.
+      </p>
+      <p class="links">
+        <a href="/embed/example-tool.iife.js">Embed script</a>
+        <a href="/api/wages">Sample data</a>
+      </p>
+      <script src="/embed/example-tool.iife.js"></script>
+      <wageindicator-example-tool heading="Sample wages"></wageindicator-example-tool>
+    </main>
+  </body>
+</html>
